@@ -6,21 +6,46 @@ submitBtn.textContent = "Submit"
 root.appendChild(textArea)
 root.appendChild(submitBtn)
 
-submitBtn.addEventListener("click", processUserInput)
+submitBtn.addEventListener("click", processInput)
 
-let wordFrequency = {}
 
-function processUserInput() {
+
+function processInput() {
+    let wordFrequency = countWords()
+    let sortedWords = sortWords(wordFrequency)
+    displayTopWords(sortedWords, wordFrequency)
+}
+
+function countWords() {
     let content = textArea.value
     let words = content.toLowerCase().split(" ")
-    wordFrequency = {}
+    let wordCounts = {}
     
     for (word of words) {
-        if (wordFrequency[word] != undefined) {
-            wordFrequency[word] += 1
+        if (wordCounts[word] != undefined) {
+            wordCounts[word] += 1
         } else {
-            wordFrequency[word] = 1
+            wordCounts[word] = 1
         }
     }
-    console.log(wordFrequency)
+    return wordCounts
+}
+
+function sortWords(wordCounts = {}) {
+    keysSorted = Object.keys(wordCounts).sort(function(a,b){
+        if (wordCounts[a]!==wordCounts[b]) {
+            return wordCounts[b]-wordCounts[a]
+        } else {
+            return a < b
+        }
+    })
+    return keysSorted
+}
+
+function displayTopWords(sortedKeys = [], wordCounts = {}) {
+    for (let i=0; i<5; i++) {
+        if (i<sortedKeys.length) {
+            console.log(`${sortedKeys[i]}: ${wordCounts[sortedKeys[i]]}`)
+        }
+    }
 }
