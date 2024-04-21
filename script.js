@@ -60,7 +60,7 @@ function displayTopWords(sortedKeys = [], wordCounts = {}) {
         if (i<sortedKeys.length) {
             let word = document.createElement("td")
             let count = document.createElement("td")
-            console.log(`${sortedKeys[i]}: ${wordCounts[sortedKeys[i]]}`)
+            //console.log(`${sortedKeys[i]}: ${wordCounts[sortedKeys[i]]}`)
             let row = table.insertRow()
             
             word.textContent = `${sortedKeys[i]}`
