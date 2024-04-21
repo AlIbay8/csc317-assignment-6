@@ -1,0 +1,10 @@
+#root {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
+
+td {
+    text-align: center;
+}
